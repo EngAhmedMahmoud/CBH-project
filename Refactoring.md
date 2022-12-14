@@ -9,3 +9,33 @@ You've been asked to refactor the function `deterministicPartitionKey` in [`dpk.
 You will be graded on the exhaustiveness and quality of your unit tests, the depth of your refactor, and the level of insight into your thought process provided by the written explanation.
 
 ## Your Explanation Here
+
+### `hashing.js` file
+
+I have been created one file `hashing.js` which contains generateHash function
+
+**Why?**
+
+- To apply **`DRY`** concept (do not repeat yourself)
+- Reduce the amount of code which has a good effect on (code `readability`,`testing`,`maintainability`)
+- To apply single source of truth and a single place of change which helps to make code more cleaner and reduce cost of change and update.
+
+### `dpk.js` file
+
+I have removed the duplicated code which enhance the performance and also reduce complexity of the code.
+
+- By Applying `fail first rule`.
+- Using the ternary operator in case there is an event passed to the function (`Readable & clean`)
+
+### `dpk.test.js`
+
+I have added test cases:
+
+- no event given status `passed`
+- Passing the event parameter without partitionKey status `passed`
+- Passing the event parameter with partitionKey and it's length more than 256 status `passed`
+- Passing the event parameter with partitionKey and it's length less than 256 status `passed`
+
+### `package.json`
+
+I added one more script `e2e-test` script which run the `deterministicPartitionKey` function in all cases
